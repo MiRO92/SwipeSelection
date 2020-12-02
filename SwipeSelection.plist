@@ -1,2 +1,7 @@
-Filter = {Bundles = ("com.apple.UIKit");};
-SupportsRoot = 1;
+{
+	Filter = {
+		Bundles = (
+			"com.apple.UIKit",
+		);
+	};
+}

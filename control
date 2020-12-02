@@ -1,9 +1,12 @@
-Package: com.iky1e.swipeselection
+Package: com.miro.swipeselection
 Name: SwipeSelection
-Depends: mobilesubstrate
-Version: 1.5.1
+Depends: firmware (>=13.0), mobilesubstrate, preferenceloader, ws.hbang.common (>= 1.11)
+Conflicts: com.iky1e.swipeselection, com.iky1e.swipeselection-pro, com.yourepo.restiveconch.swipeselectionfix
+Version: 1.0~beta7
+Depiction: https://miro92.com/repo/depictions/?p=com.miro.swipeselection
+Description: Select text and move the cursor using gestures on the keyboard.
 Architecture: iphoneos-arm
-Description: Swipe along the keyboard to move the cursor and select text.
-Maintainer: Kyle Howells
-Author: Kyle Howells
+Maintainer: MiRO <tweaks_support@miro92.com>
+Author: MiRO <tweaks_support@miro92.com>
 Section: Tweaks
+Tag: purpose::extension, compatible_min::ios13, compatible_max::ios14
