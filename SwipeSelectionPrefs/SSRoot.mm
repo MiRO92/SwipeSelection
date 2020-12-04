@@ -34,7 +34,7 @@ UIImage *imageWithTint(UIImage *image, UIColor *tintColor) {
 NSArray *countArrayFromArray(NSInteger start, NSArray *countedArray) {
     NSArray *array = [NSArray array];
     NSInteger to = [countedArray count] + start;
-    for ( int i = start ; i < to ; i ++ )
+    for ( int i = start; i < to; i ++ )
         array = [array arrayByAddingObject:[NSNumber numberWithInt:i]];
 
     return array;

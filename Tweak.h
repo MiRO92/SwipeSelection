@@ -203,43 +203,43 @@
     WKWebView *_webView;
 }
 - (void)moveByOffset:(NSInteger)offset;
-- (id)positionFromPosition:(id)arg1 inDirection:(long long)arg2 offset:(long long)arg3 ;
-- (id)positionFromPosition:(id)arg1 toBoundary:(long long)arg2 inDirection:(long long)arg3 ;
-- (id)textRangeFromPosition:(id)arg1 toPosition:(id)arg2 ;
-- (void)setSelectedTextRange:(UITextRange *)arg1 ;
+- (id)positionFromPosition:(id)arg1 inDirection:(long long)arg2 offset:(long long)arg3;
+- (id)positionFromPosition:(id)arg1 toBoundary:(long long)arg2 inDirection:(long long)arg3;
+- (id)textRangeFromPosition:(id)arg1 toPosition:(id)arg2;
+- (void)setSelectedTextRange:(UITextRange *)arg1;
 - (id)selectedText;
 - (void)selectWordBackward;
 - (UITextRange *)selectedTextRange;
-- (void)setSelectedTextRange:(UITextRange *)arg1 ;
-- (long long)baseWritingDirectionForPosition:(id)arg1 inDirection:(long long)arg2 ;
+- (void)setSelectedTextRange:(UITextRange *)arg1;
+- (long long)baseWritingDirectionForPosition:(id)arg1 inDirection:(long long)arg2;
 - (id<UITextInputTokenizer>)tokenizer;
 - (UITextRange *)markedTextRange;
-- (id)textInRange:(id)arg1 ;
-- (void)setMarkedText:(id)arg1 selectedRange:(NSRange)arg2 ;
+- (id)textInRange:(id)arg1;
+- (void)setMarkedText:(id)arg1 selectedRange:(NSRange)arg2;
 - (NSRange)selectionRange;
 - (NSRange)_markedTextNSRange;
 - (UITextPosition *)beginningOfDocument;
-- (id)selectionRectsForRange:(id)arg1 ;
-- (long long)comparePosition:(id)arg1 toPosition:(id)arg2 ;
-- (void)beginSelectionInDirection:(long long)arg1 completionHandler:(id)arg2 ;
-- (void)selectTextWithGranularity:(long long)arg1 atPoint:(CGPoint)arg2 completionHandler:(id)arg3 ;
-- (void)updateSelectionWithExtentPoint:(CGPoint)arg1 completionHandler:(/*^block */id)arg2 ;
-- (void)updateSelectionWithExtentPoint:(CGPoint)arg1 withBoundary:(long long)arg2 completionHandler:(id)arg3 ;
+- (id)selectionRectsForRange:(id)arg1;
+- (long long)comparePosition:(id)arg1 toPosition:(id)arg2;
+- (void)beginSelectionInDirection:(long long)arg1 completionHandler:(id)arg2;
+- (void)selectTextWithGranularity:(long long)arg1 atPoint:(CGPoint)arg2 completionHandler:(id)arg3;
+- (void)updateSelectionWithExtentPoint:(CGPoint)arg1 completionHandler:(/*^block */id)arg2;
+- (void)updateSelectionWithExtentPoint:(CGPoint)arg1 withBoundary:(long long)arg2 completionHandler:(id)arg3;
 - (id)webView;
-- (id)positionFromPosition:(id)arg1 offset:(long long)arg2 ;
+- (id)positionFromPosition:(id)arg1 offset:(long long)arg2;
 
-- (id)_moveToEndOfWord:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveToEndOfLine:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveRight:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveToStartOfWord:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveToStartOfLine:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveLeft:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveToEndOfParagraph:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveToEndOfDocument:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveDown:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveToStartOfParagraph:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveToStartOfDocument:(BOOL)arg1 withHistory:(id)arg2 ;
-- (id)_moveUp:(BOOL)arg1 withHistory:(id)arg2 ;
+- (id)_moveToEndOfWord:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveToEndOfLine:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveRight:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveToStartOfWord:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveToStartOfLine:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveLeft:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveToEndOfParagraph:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveToEndOfDocument:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveDown:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveToStartOfParagraph:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveToStartOfDocument:(BOOL)arg1 withHistory:(id)arg2;
+- (id)_moveUp:(BOOL)arg1 withHistory:(id)arg2;
 
 @end
 
@@ -255,11 +255,11 @@
 
 @interface WKTextPosition : UITextPosition
 @property (assign,nonatomic) CGRect positionRect;
-+ (id)textPositionWithRect:(CGRect)arg1 ;
-- (BOOL)isEqual:(id)arg1 ;
++ (id)textPositionWithRect:(CGRect)arg1;
+- (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (CGRect)positionRect;
-- (void)setPositionRect:(CGRect)arg1 ;
+- (void)setPositionRect:(CGRect)arg1;
 @end
 
 
@@ -272,8 +272,8 @@
 @property (assign,nonatomic) BOOL isEditable;                                    
 @property (assign,nonatomic) long long selectedTextLength;
 @property (nonatomic,copy) NSArray *selectionRects;
-+ (id)textRangeWithState:(BOOL)arg1 isRange:(BOOL)arg2 isEditable:(BOOL)arg3 startRect:(CGRect)arg4 endRect:(CGRect)arg5 selectionRects:(id)arg6 selectedTextLength:(unsigned long long)arg7 ;
-- (BOOL)isEqual:(id)arg1 ;
++ (id)textRangeWithState:(BOOL)arg1 isRange:(BOOL)arg2 isEditable:(BOOL)arg3 startRect:(CGRect)arg4 endRect:(CGRect)arg5 selectionRects:(id)arg6 selectedTextLength:(unsigned long long)arg7;
+- (BOOL)isEqual:(id)arg1;
 - (id)description;
 - (BOOL)isEmpty;
 - (id)start;
@@ -282,15 +282,15 @@
 - (BOOL)_isRanged;
 - (BOOL)_isCaret;
 - (NSArray *)selectionRects;
-- (void)setStartRect:(CGRect)arg1 ;
-- (void)setEndRect:(CGRect)arg1 ;
+- (void)setStartRect:(CGRect)arg1;
+- (void)setEndRect:(CGRect)arg1;
 - (CGRect)startRect;
 - (CGRect)endRect;
-- (void)setIsEditable:(BOOL)arg1 ;
-- (void)setIsNone:(BOOL)arg1 ;
-- (void)setIsRange:(BOOL)arg1 ;
-- (void)setSelectedTextLength:(long long)arg1 ;
-- (void)setSelectionRects:(NSArray *)arg1 ;
+- (void)setIsEditable:(BOOL)arg1;
+- (void)setIsNone:(BOOL)arg1;
+- (void)setIsRange:(BOOL)arg1;
+- (void)setSelectedTextLength:(long long)arg1;
+- (void)setSelectionRects:(NSArray *)arg1;
 - (BOOL)isRange;
 - (BOOL)isNone;
 - (long long)selectedTextLength;
