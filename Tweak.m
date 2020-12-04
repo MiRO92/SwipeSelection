@@ -40,7 +40,7 @@ static UITextRange *range;
 static NSString *textRange;
 static UIResponder <UITextInput> *tempDelegate;
 static UIResponder <UITextInput> *delegate;
-static WKContentView * webView;
+static WKContentView *webView;
 
 #pragma mark - Helper functions
 
@@ -78,7 +78,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
 @end
 
 @implementation SSPanGesture
--(BOOL)canBePreventedByGestureRecognizer:(UIGestureRecognizer *)gesture {
+- (BOOL)canBePreventedByGestureRecognizer:(UIGestureRecognizer *)gesture {
     if (([gesture isKindOfClass:[UIPanGestureRecognizer class]] && ![gesture isKindOfClass:[SSPanGesture class]]) || [gesture isKindOfClass:[UISwipeGestureRecognizer class]]) {
         // if (enabledSwipeExtenderX) return YES;
         return YES;
@@ -97,7 +97,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
 #pragma mark - Hooks
 %hook UIKeyboardImpl
 
--(id)initWithFrame:(CGRect)rect {
+- (id)initWithFrame:(CGRect)rect {
     id orig = %orig;
 
     if (orig) {
@@ -117,7 +117,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
 
 
 
--(void)layoutSubviews {
+- (void)layoutSubviews {
     %orig;
     if (@available(iOS 14.0, *)) {
         BOOL found = NO;
@@ -144,7 +144,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
 
 
 %new
-- (void)SSUpDownGesture:(UIPanGestureRecognizer*)gesture {
+- (void)SSUpDownGesture:(UIPanGestureRecognizer *)gesture {
     static CGPoint previousPosition;
     static CGFloat yOffset = 0;
     static CGPoint realPreviousPosition;
@@ -181,7 +181,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
         handWriting = [currentLayout handwritingPlane];
     }
     else if ([currentLayout respondsToSelector:@selector(subviews)] && !handWriting && !haveCheckedHand) {
-        NSArray *subviews = [((UIView*)currentLayout) subviews];
+        NSArray *subviews = [((UIView *)currentLayout) subviews];
         for (UIView *subview in subviews) {
 
             if ([subview respondsToSelector:@selector(subviews)]) {
@@ -300,7 +300,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
 }
 
 %new
-- (void)SSLeftRightGesture:(UIPanGestureRecognizer*)gesture {
+- (void)SSLeftRightGesture:(UIPanGestureRecognizer *)gesture {
     // Location info (may change)
     static UITextRange *startingTextRange = nil;
     static CGPoint previousPosition;
@@ -356,7 +356,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
         handWriting = [currentLayout handwritingPlane];
     }
     else if ([currentLayout respondsToSelector:@selector(subviews)] && !handWriting && !haveCheckedHand) {
-        NSArray *subviews = [((UIView*)currentLayout) subviews];
+        NSArray *subviews = [((UIView *)currentLayout) subviews];
         for (UIView *subview in subviews) {
 
             if ([subview respondsToSelector:@selector(subviews)]) {
@@ -395,7 +395,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
         delegate = (id)keyboardImpl.inputDelegate;
     }
     
-    if ([NSStringFromClass([delegate class]) isEqualToString:@"WKContentView"]) webView = (WKContentView*)delegate;
+    if ([NSStringFromClass([delegate class]) isEqualToString:@"WKContentView"]) webView = (WKContentView *)delegate;
 
 
     // Start Gesture stuff
@@ -602,7 +602,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
                 }
 
                 // Another sanity check
-                if (!_position || positiveX < xMinimum){
+                if (!_position || positiveX < xMinimum) {
                     _position = _position_old;
                 }
             }
@@ -668,7 +668,7 @@ static BOOL isMoreKey = NO;
 static BOOL triggerDelete = NO;
 
 %hook UIKeyboardDockView
--(id)_keyboardLongPressInteractionRegions {
+- (id)_keyboardLongPressInteractionRegions {
     if (disableTrackpad) {
         NSMutableArray<NSValue *> *regions = [NSMutableArray array];
         return regions;
@@ -678,7 +678,7 @@ static BOOL triggerDelete = NO;
 %end
 
 %hook UIKeyboardLayout
--(id)_keyboardLongPressInteractionRegions {
+- (id)_keyboardLongPressInteractionRegions {
     if (disableTrackpad) {
         NSMutableArray<NSValue *> *regions = [NSMutableArray array];
         return regions;
@@ -688,18 +688,18 @@ static BOOL triggerDelete = NO;
 %end
 
 %hook UIKeyboardLayoutStar
--(void)layoutSubviews {
+- (void)layoutSubviews {
     %orig;
     if (disableTrackpad) self.gestureRecognizers = [NSArray new];
 }
 
 /*==============touchesBegan================*/
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     
     UIKBKey *keyObject = [self keyHitTest:[touch locationInView:touch.view]];
     NSString *key = [[keyObject representedString] lowercaseString];
-//    NSLog(@"key=[%@]  -  keyObject=%@  -  flickDirection = %d", key, keyObject, [(UIKBTree*)keyObject flickDirection]);
+//    NSLog(@"key=[%@]  -  keyObject=%@  -  flickDirection = %d", key, keyObject, [(UIKBTree *)keyObject flickDirection]);
     
     // Delete key
     if ([key isEqualToString:@"delete"]) {
@@ -725,7 +725,7 @@ static BOOL triggerDelete = NO;
 }
 
 /*==============touchesMoved================*/
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     
     UIKBKey *keyObject = [self keyHitTest:[touch locationInView:touch.view]];
@@ -756,7 +756,7 @@ static BOOL triggerDelete = NO;
     %orig;
 }
 
--(void)touchesCancelled:(id)arg1 withEvent:(id)arg2 {
+- (void)touchesCancelled:(id)arg1 withEvent:(id)arg2 {
     %orig(arg1, arg2);
     
     deleteKeyPressed = NO;
@@ -766,7 +766,7 @@ static BOOL triggerDelete = NO;
 }
 
 /*==============touchesEnded================*/
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     %orig;
     
     isDeleteKey = NO;
@@ -792,17 +792,17 @@ static BOOL triggerDelete = NO;
 }
 
 %new
--(BOOL)SS_shouldSelect {
+- (BOOL)SS_shouldSelect {
     return ([self isShiftKeyBeingHeld] || deleteKeyPressed);
 }
 
 %new
--(BOOL)SS_isSpaceKey {
+- (BOOL)SS_isSpaceKey {
     return isSpaceKey;
 }
 
 %new
--(BOOL)SS_disableSwipes {
+- (BOOL)SS_disableSwipes {
     return isMoreKey;
 }
 %end
@@ -811,7 +811,7 @@ static BOOL triggerDelete = NO;
 %hook UIKeyboardImpl
 
 // Doesn't work to get long press on delete key but does for other keys.
--(BOOL)isLongPress {
+- (BOOL)isLongPress {
     isLongPressed = %orig;
     
     if (isLongPressed) [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(SSLeftRightGesture:) object:nil];
@@ -838,7 +838,7 @@ static BOOL triggerDelete = NO;
 //    }
 //}
 
-- (void)handleDeleteAsRepeat:(BOOL)repeat executionContext:(UIKeyboardTaskExecutionContext*)executionContext {
+- (void)handleDeleteAsRepeat:(BOOL)repeat executionContext:(UIKeyboardTaskExecutionContext *)executionContext {
     isLongPressed = repeat;
     if ([[UIKeyboardImpl activeInstance] isInHardwareKeyboardMode] || (isLongPressed && isDeleteKey)) {
         %orig;
