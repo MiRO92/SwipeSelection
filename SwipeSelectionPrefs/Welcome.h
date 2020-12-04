@@ -14,8 +14,8 @@
 @end
 
 @interface OBBoldTrayButton : UIButton
-- (void)setTitle:(id)arg1 forState:(unsigned long long)arg2;
-+ (id)buttonWithType:(long long)arg1;
+- (void)setTitle:(id)arg1 forState:(NSUInteger)arg2;
++ (id)buttonWithType:(NSInteger)arg1;
 @end
 
 @interface OBWelcomeController : UIViewController
