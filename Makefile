@@ -1,9 +1,9 @@
 ifdef sim
-	ARCHS = x86_64
-	TARGET = simulator:latest:13.0
+	export ARCHS = x86_64
+	export TARGET = simulator:latest:13.0
 else
-	ARCHS = arm64 arm64e
-	TARGET = iphone:clang:latest:13.0
+	export ARCHS = arm64 arm64e
+	export TARGET = iphone:clang:latest:13.0
 endif
 
 PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)
@@ -34,7 +34,7 @@ setup:: clean all
 	@echo "Done"
 	@echo ""
 else
-	SUBPROJECTS += SwipeSelection
+	SUBPROJECTS += SwipeSelectionPrefs
 endif
 
 include $(THEOS_MAKE_PATH)/aggregate.mk
