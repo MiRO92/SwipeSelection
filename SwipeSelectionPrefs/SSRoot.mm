@@ -32,9 +32,9 @@ UIImage *imageWithTint(UIImage *image, UIColor *tintColor) {
 }
 
 NSArray *countArrayFromArray(NSInteger start, NSArray *countedArray) {
-    NSArray * array = [NSArray array];
+    NSArray *array = [NSArray array];
     NSInteger to = [countedArray count] + start;
-    for ( int i = start ; i < to ; i ++ )
+    for ( int i = start; i < to; i ++ )
         array = [array arrayByAddingObject:[NSNumber numberWithInt:i]];
 
     return array;
@@ -232,11 +232,11 @@ NSArray *countArrayFromArray(NSInteger start, NSArray *countedArray) {
         int feedbackTypeSegment = ([prefs objectForKey:@"feedbackTypeSegment"] ? [[prefs objectForKey:@"feedbackTypeSegment"] intValue] : 1);
 
         if (feedbackTypeSegment == 1) {
-            for(PSSpecifier *sp in _dynamicTaptic) {
+            for (PSSpecifier *sp in _dynamicTaptic) {
                 [mutableSpecifiers addObject:sp];
             }
         } else if (feedbackTypeSegment == 2) {
-            for(PSSpecifier *sp in _dynamicHaptic) {
+            for (PSSpecifier *sp in _dynamicHaptic) {
                 [mutableSpecifiers addObject:sp];
             }
         }
@@ -314,7 +314,7 @@ NSArray *countArrayFromArray(NSInteger start, NSArray *countedArray) {
 }
 
 
--(id) readPreferenceValue:(PSSpecifier *)specifier {
+- (id) readPreferenceValue:(PSSpecifier *)specifier {
         NSDictionary *prefsPlist = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", [specifier.properties objectForKey:@"defaults"]]];
         if (![prefsPlist objectForKey:[specifier.properties objectForKey:@"key"]]) {
             return [specifier.properties objectForKey:@"default"];

@@ -3,31 +3,31 @@
 
 @implementation SSAppearanceSettings
 
-- (UIColor*)tintColor {
+- (UIColor *)tintColor {
     return tweakTintColor;
 }
 
-- (UIColor*)statusBarTintColor {
+- (UIColor *)statusBarTintColor {
     return [UIColor whiteColor];
 }
 
-- (UIColor*)navigationBarTitleColor {
+- (UIColor *)navigationBarTitleColor {
     return [UIColor whiteColor];
 }
 
-- (UIColor*)navigationBarTintColor {
+- (UIColor *)navigationBarTintColor {
     return [UIColor whiteColor];
 }
 
-- (UIColor*)tableViewCellSeparatorColor {
+- (UIColor *)tableViewCellSeparatorColor {
     return [UIColor clearColor];
 }
 
-- (UIColor*)navigationBarBackgroundColor {
+- (UIColor *)navigationBarBackgroundColor {
     return tweakTintColor;
 }
 
-- (UIColor*)tableViewCellTextColor {
+- (UIColor *)tableViewCellTextColor {
     return tweakTintColor;
 }
 

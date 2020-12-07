@@ -26,7 +26,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
     
     
     // Create your button here, set some properties, and add it to the controller.
-    OBBoldTrayButton* continueButton = [OBBoldTrayButton buttonWithType:1];
+    OBBoldTrayButton *continueButton = [OBBoldTrayButton buttonWithType:1];
     [continueButton addTarget:self action:@selector(dismissWelcomeController) forControlEvents:UIControlEventTouchUpInside];
     [continueButton setTitle:@"Continue" forState:UIControlStateNormal];
     [continueButton setClipsToBounds:YES]; // There seems to be an internal issue with the properties, so you may need to force this to YES like so.
@@ -64,7 +64,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 }
 
--(void)dismissWelcomeController { // Say goodbye to your controller. :(
+- (void)dismissWelcomeController { // Say goodbye to your controller. :(
     [[[HBPreferences alloc] initWithIdentifier: @packageID] removeAllObjects];
     [[NSFileManager defaultManager] removeItemAtPath:@prefFile error: nil];
 
@@ -81,7 +81,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
     });
 }
 
--(UIImage *)imageWithTint:(UIImage *)image andTintColor:(UIColor *)tintColor {
+- (UIImage *)imageWithTint:(UIImage *)image andTintColor:(UIColor *)tintColor {
     UIImage *imageNew = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:imageNew];
     imageView.tintColor = tintColor;
