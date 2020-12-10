@@ -34,6 +34,7 @@ BOOL enabledSwipeExtenderX = NO;
 BOOL enableKeyboardFade = NO;
 BOOL onlyInSpaceKey = NO;
 BOOL disableTrackpad = NO;
+BOOL deleteKeySound = YES;
 int cursorSpeed = 10;
 
 static UITextRange *range;
@@ -781,7 +782,7 @@ static BOOL triggerDelete = NO;
         if ([kb respondsToSelector:@selector(handleDelete)]) {
             triggerDelete = YES;
             [kb handleDelete];
-            AudioServicesPlaySystemSound(1155);
+            if (deleteKeySound) AudioServicesPlaySystemSound(1155);
         }
     }
 
@@ -898,6 +899,7 @@ static void loadPrefs() {
     enabledSwipeExtenderX = ([prefs objectForKey:@"enabledSwipeExtenderX"] ? [[prefs objectForKey:@"enabledSwipeExtenderX"] boolValue] : NO);
     onlyInSpaceKey = ([prefs objectForKey:@"onlyInSpaceKey"] ? [[prefs objectForKey:@"onlyInSpaceKey"] boolValue] : NO);
     disableTrackpad = ([prefs objectForKey:@"disableTrackpad"] ? [[prefs objectForKey:@"disableTrackpad"] boolValue] : NO);
+    deleteKeySound = ([prefs objectForKey:@"deleteKeySound"] ? [[prefs objectForKey:@"deleteKeySound"] boolValue] : YES);
 //    enableKeyboardFade = ([prefs objectForKey:@"enableKeyboardFade"] ? [[prefs objectForKey:@"enableKeyboardFade"] boolValue] : YES);
     disableTrackpad = ([prefs objectForKey:@"disableTrackpad"] ? [[prefs objectForKey:@"disableTrackpad"] boolValue] : NO);
     BOOL enableCursorMovingOffset = ([prefs objectForKey:@"enableCursorMovingOffset"] ? [[prefs objectForKey:@"enableCursorMovingOffset"] boolValue] : NO);

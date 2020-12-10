@@ -207,6 +207,12 @@ NSArray *countArrayFromArray(NSInteger start, NSArray *countedArray) {
         setDefaultForSpec(@YES);
         [mutableSpecifiers addObject:specifier];
         
+        specifier = subtitleSwitchCellWithName(@"Delete Key Sound");
+        [specifier setProperty:@packageID forKey:@"defaults"];
+        setKeyForSpec(@"deleteKeySound");
+        setDefaultForSpec(@YES);
+        [mutableSpecifiers addObject:specifier];
+        
         specifier = segmentCellWithName(@"Cursor Speed: (%i)");
         [specifier setProperty:@packageID forKey:@"defaults"];
         [specifier setProperty:NSClassFromString(@"HBStepperTableCell") forKey:@"cellClass"];

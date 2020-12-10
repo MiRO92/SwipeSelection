@@ -40,7 +40,7 @@ endif
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 after-install::
-    install.exec "killall -9 SpringBoard"
+	install.exec "killall -9 SpringBoard"
 
 before-stage::
-    find . -name ".DS_Store" -type f -delete
+	find . -name ".DS_Store" -type f -delete
