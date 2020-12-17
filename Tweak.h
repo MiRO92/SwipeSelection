@@ -161,6 +161,8 @@
 - (BOOL)isShiftLocked;
 - (BOOL)isAutoShifted;
 - (BOOL)shiftLockedEnabled;
+- (BOOL)isShiftKeyBeingHeld;
+
 
 // SwipeSelection
 - (void)SSLeftRightGesture:(UIPanGestureRecognizer *)gesture;

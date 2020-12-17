@@ -6,3 +6,7 @@ obj
 .theos
 .DS_Store
 *.xcworkspace/*
+*.xcworkspace
+Tweak.m
+run_theos.sh
+run_theos_simulator.sh

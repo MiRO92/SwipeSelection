@@ -37,6 +37,8 @@ BOOL disableTrackpad = NO;
 BOOL deleteKeySound = YES;
 int cursorSpeed = 10;
 
+BOOL slideCutExist = NO;
+
 static UITextRange *range;
 static NSString *textRange;
 static UIResponder <UITextInput> *tempDelegate;
@@ -442,7 +444,7 @@ static void ShiftCaretToOneCharacter(id<UITextInput> delegate, UITextLayoutDirec
         if ([currentLayout respondsToSelector:@selector(didEndIndirectSelectionGesture:)] && enableKeyboardFade) {
             [currentLayout didEndIndirectSelectionGesture:YES];
         }
-    } else if (([keyboardImpl isTrackpadMode] && !enableKeyboardFade) || longPress || handWriting || !delegate || isMoreKey || cancelled) {
+    } else if (([keyboardImpl isTrackpadMode] && !enableKeyboardFade) || longPress || handWriting || !delegate || isMoreKey || cancelled || (slideCutExist && isSpaceKey)) {
         if ([currentLayout respondsToSelector:@selector(didEndIndirectSelectionGesture:)] && enableKeyboardFade) {
             [currentLayout didEndIndirectSelectionGesture:YES];
         }
@@ -777,7 +779,7 @@ static BOOL triggerDelete = NO;
     
     
     // Delete key
-    if ([key isEqualToString:@"delete"] && !isLongPressed) {
+    if (![self isShiftKeyBeingHeld] && [key isEqualToString:@"delete"] && !isLongPressed) {
         UIKeyboardImpl *kb = [UIKeyboardImpl activeInstance];
         if ([kb respondsToSelector:@selector(handleDelete)]) {
             triggerDelete = YES;
@@ -844,7 +846,7 @@ static BOOL triggerDelete = NO;
     if ([[UIKeyboardImpl activeInstance] isInHardwareKeyboardMode] || (isLongPressed && isDeleteKey)) {
         %orig;
         
-    } else if (triggerDelete && !isLongPressed) {
+    } else if ([self isShiftKeyBeingHeld] || (triggerDelete && !isLongPressed)) {
         repeat = NO;
         %orig;
         
@@ -934,6 +936,10 @@ static void loadPrefsNotification(CFNotificationCenterRef center, void *observer
                     if (isSpringBoard || isApplication) {
 
                         %init(globalGroup);
+                        
+                        if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/SlideCut.dylib"]) {
+                            slideCutExist = YES;
+                        }
 
                         CFNotificationCenterAddObserver(CFNotificationCenterGetDistributedCenter(), NULL, loadPrefsNotification, CFSTR("com.miro.swipeselection.settings"), NULL, CFNotificationSuspensionBehaviorDeliverImmediately);
                     }
