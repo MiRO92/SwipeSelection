@@ -10,3 +10,4 @@ obj
 Tweak.m
 run_theos.sh
 run_theos_simulator.sh
+Release_to_Public_Repo_Shortcut.command
